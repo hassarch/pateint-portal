@@ -32,8 +32,8 @@ npm i
 cd ..
 
 # Step 4: Configure environment variables
-# The server/.env file is already configured with your MongoDB connection string
-# For frontend, update .env if needed (defaults to localhost:3001)
+# Backend: define MONGODB_URI (and optional DB_NAME, PORT) in the project root .env
+# Frontend: update .env (VITE_MONGODB_API_URL defaults to http://localhost:3002/api/mongodb)
 
 # Step 5: Start the backend server (in one terminal)
 cd server
@@ -45,10 +45,11 @@ npm run dev
 
 ### MongoDB Setup
 
-Your MongoDB connection string is already configured:
+Set your MongoDB connection string via environment variable in server/.env:
 ```
-mongodb+srv://<username>:<password>@cluster0.lrjasue.mongodb.net/healthcare
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/healthcare
 ```
+Never commit real credentials to version control.
 
 **MongoDB Atlas Configuration:**
 1. **Network Access:** Add `0.0.0.0/0` to allow connections (or specific IPs)
@@ -69,13 +70,13 @@ mongodb+srv://<username>:<password>@cluster0.lrjasue.mongodb.net/healthcare
    cd server
    npm start
    ```
-   Server runs on `http://localhost:3001`
+   Server runs on `http://localhost:3002`
 
 2. **Start the frontend dev server:**
    ```sh
    npm run dev
    ```
-   Frontend runs on `http://localhost:8080` with hot-reloading enabled.
+   Frontend runs on the Vite dev server (typically `http://localhost:5173`) with hot-reloading enabled.
 
 ## Building for Production
 

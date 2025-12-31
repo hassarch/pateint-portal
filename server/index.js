@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -11,8 +12,14 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://hass:hass123@cluster0.lrjasue.mongodb.net/healthcare';
+const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = process.env.DB_NAME || 'healthcare';
+
+if (!MONGODB_URI) {
+  console.error('Missing required environment variable: MONGODB_URI');
+  console.error('Please set MONGODB_URI in server/.env (see server/.env.example)');
+  process.exit(1);
+}
 
 let client;
 let db;

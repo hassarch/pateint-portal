@@ -11,10 +11,10 @@ Express.js backend server for MongoDB Atlas operations.
    ```
 
 2. **Configure environment variables:**
-   The `.env` file is already configured with your MongoDB connection string:
+   Create or edit the project root `.env` file and set your values:
    ```
-   MONGODB_URI=mongodb+srv://hass:hass123@cluster0.lrjasue.mongodb.net/healthcare
-   PORT=3001
+   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<db-name>
+   PORT=3002
    ```
 
 3. **Start the server:**
